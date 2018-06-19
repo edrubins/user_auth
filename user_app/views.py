@@ -1,3 +1,4 @@
+import sys
 from django.shortcuts import render
 from user_app.forms import UserForm, UserProfileInfoForm
 # Create your views here.
@@ -24,21 +25,28 @@ def register(request):
                 profile = profile_form.save(commit=False)
                 profile.user = user
                 if 'profile_pic' in request.FILES:
-                    profile.profile_pic = request.FILES['profile_p[ic']
+                    profile.profile_pic = request.FILES['profile_pic']
 
                 profile.save()
 
                 registered = True
-        except Exception as e:
-            raise Exception
+        except:
+            raise OSError(sys.exc_info()[0], sys.exc_info()[1], sys.exc_info()[2])
 
+        else:
+            user_form = UserForm
+            profile_form = UserProfileInfoForm
+
+        cntx = {'user_form' : user_form,
+                'profile_form' : profile_form,
+                'registered' : registered}
+        return render(request, 'user_app/registration.html', context=cntx)
     else:
         user_form = UserForm
         profile_form = UserProfileInfoForm
-
-    cntx = {'user_form' : user_form,
-            'profile_form' : profile_form,
-            'registered' : registered}
-    return render(request, 'user_app/registration.html', context=cntx)
+        cntx = {'user_form' : user_form,
+                'profile_form' : profile_form,
+                'registered' : registered}
+        return render(request, 'user_app/registration.html', context=cntx)
 
 
