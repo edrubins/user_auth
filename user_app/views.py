@@ -1,5 +1,7 @@
 import sys
 from django.shortcuts import render
+from django.contrib.auth.models import User
+from user_app.models import UserProfileInfo
 from user_app.forms import UserForm, UserProfileInfoForm
 # Create your views here.
 def index(request):
@@ -49,4 +51,14 @@ def register(request):
                 'registered' : registered}
         return render(request, 'user_app/registration.html', context=cntx)
 
+def user_list(request):
+    profiles = UserProfileInfo.objects.all()
+    for profile in profiles:
+        print(profile.user.username)
+        print('\t' + profile.user.first_name)
+        print('\t' + profile.user.last_name)
+        print('\t' + profile.user.email)
+        print('\t' + profile.portfolio)
+        print('\t' + profile.profile_pic.__str__())
 
+    return render(request, 'user_app/user_list.html', context={'profiles' : profiles})
