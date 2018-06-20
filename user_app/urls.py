@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.conf.urls import url
-from django.conf.urls import static
 from user_app import views
 
 app_name ='user_app'

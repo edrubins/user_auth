@@ -25,7 +25,7 @@
                             <td>{{ profile.portifilo }}</td>
                             <td>
                                 {% if profile.profile_pic %}
-                                    <img src="{{ MEDIA_URL }}/{{ profile.profile.pic }}" alt="">
+                                    <img src="{{ MEDIA_URL }}{{ profile.profile_pic }}" alt="" width="150px" height="auto">
                                 {% endif %}
                             </td>
                         </tr>
