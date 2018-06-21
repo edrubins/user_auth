@@ -7,6 +7,6 @@ tr.even_row {
     background-color: aliceblue;
 }
 
-/*tr.odd_row {*/
-    /*background-color: aqua;*/
-/*}*/
+tr {
+    border: solid 3px black;
+}
