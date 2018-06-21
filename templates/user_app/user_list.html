@@ -1,4 +1,5 @@
 {% extends 'user_app/base.html' %}
+{% load custom_filers %}
 
 {% block body_block %}
     <div class="jumbotron">
@@ -10,23 +11,26 @@
                 <table>
                     <div class="row">
                         <theader>
+                            <th class="col-md-2">Row#</th>
                             <th class="col-md-2">Username</th>
                             <th class="col-md-2">First Name</th>
                             <th class="col-md-2">Last Name</th>
-                            <th class="col-md-2" clo-md-2>Email</th>
-                            <th class="col-md-2" clo-md-2>Portfolio Site</th>
-                            <th class="col-md-2" clo-md-2>Profile Picture</th>
+                            <th class="col-md-2" >Email</th>
+                            <th class="col-md-2" >Portfolio Site</th>
+                            <th class="col-md-2" >Profile Picture</th>
                         </theader>
                     </div>
+
                     {% for profile in profiles %}
                         <div class="row">
-                            <tr>
-                                <td class="col-md-2" clo-md-2>{{ profile.user.username }}</td>
-                                <td class="col-md-2" clo-md-2>{{ profile.user.first_name }}</td>
-                                <td class="col-md-2" clo-md-2>{{ profile.user.last_name }}</td>
-                                <td class="col-md-2" clo-md-2>{{ profile.user.email }}</td>
-                                <td class="col-md-2" clo-md-2>{{ profile.portfolio }}</td>
-                                <td class="col-md-2" clo-md-2>
+                            <tr class="{{ forloop.counter|row_class }}" >
+                                <td class="col-md-2">{{ forloop.counter }}</td>
+                                <td class="col-md-2" >{{ profile.user.username }}</td>
+                                <td class="col-md-2" >{{ profile.user.first_name }}</td>
+                                <td class="col-md-2" >{{ profile.user.last_name }}</td>
+                                <td class="col-md-2" >{{ profile.user.email }}</td>
+                                <td class="col-md-2" >{{ profile.portfolio }}</td>
+                                <td class="col-md-2 ">
                                     {% if profile.profile_pic %}
                                         <img src="{{ MEDIA_URL }}{{ profile.profile_pic }}" alt="col-md-2" width="150px"
                                              height="auto">

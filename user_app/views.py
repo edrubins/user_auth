@@ -62,4 +62,4 @@ def user_list(request):
         print('\t' + profile.portfolio)
         print('\t' + profile.profile_pic.__str__())
 
-    return render(request, 'user_app/user_list.html', context={'profiles' : profiles})
+    return render(request, 'user_app/user_list.html', context={'profiles' : profiles, 'row_count': 0})

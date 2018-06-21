@@ -2,3 +2,11 @@ body {
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
     font-size: 2em;
 }
+
+tr.even_row {
+    background-color: aliceblue;
+}
+
+/*tr.odd_row {*/
+    /*background-color: aqua;*/
+/*}*/
