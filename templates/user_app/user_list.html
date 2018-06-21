@@ -8,27 +8,32 @@
             <div class="container">
                 <h2>Presnting Our Users</h2>
                 <table>
-                    <theader>
-                        <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Portfolio Site</th>
-                        <th>Profile Picture</th>
-                    </theader>
+                    <div class="row">
+                        <theader>
+                            <th class="col-md-2">Username</th>
+                            <th class="col-md-2">First Name</th>
+                            <th class="col-md-2">Last Name</th>
+                            <th class="col-md-2" clo-md-2>Email</th>
+                            <th class="col-md-2" clo-md-2>Portfolio Site</th>
+                            <th class="col-md-2" clo-md-2>Profile Picture</th>
+                        </theader>
+                    </div>
                     {% for profile in profiles %}
-                        <tr>
-                            <td>{{ profile.user.username }}</td>
-                            <td>{{ profile.user.first_name }}</td>
-                            <td>{{ profile.user.last_name }}</td>
-                            <td>{{ profile.user.email }}</td>
-                            <td>{{ profile.portifilo }}</td>
-                            <td>
-                                {% if profile.profile_pic %}
-                                    <img src="{{ MEDIA_URL }}{{ profile.profile_pic }}" alt="" width="150px" height="auto">
-                                {% endif %}
-                            </td>
-                        </tr>
+                        <div class="row">
+                            <tr>
+                                <td class="col-md-2" clo-md-2>{{ profile.user.username }}</td>
+                                <td class="col-md-2" clo-md-2>{{ profile.user.first_name }}</td>
+                                <td class="col-md-2" clo-md-2>{{ profile.user.last_name }}</td>
+                                <td class="col-md-2" clo-md-2>{{ profile.user.email }}</td>
+                                <td class="col-md-2" clo-md-2>{{ profile.portfolio }}</td>
+                                <td class="col-md-2" clo-md-2>
+                                    {% if profile.profile_pic %}
+                                        <img src="{{ MEDIA_URL }}{{ profile.profile_pic }}" alt="col-md-2" width="150px"
+                                             height="auto">
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </div>
                     {% endfor %}
                 </table>
             </div>
