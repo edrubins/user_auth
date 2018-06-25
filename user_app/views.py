@@ -82,13 +82,13 @@ def user_login(request):
 @login_required
 def user_list(request):
     profiles = UserProfileInfo.objects.all()
-    for profile in profiles:
-        print(profile.user.username)
-        print('\t' + profile.user.first_name)
-        print('\t' + profile.user.last_name)
-        print('\t' + profile.user.email)
-        print('\t' + profile.portfolio)
-        print('\t' + profile.profile_pic.__str__())
+    # for profile in profiles:
+    #     print(profile.user.username)
+    #     print('\t' + profile.user.first_name)
+    #     print('\t' + profile.user.last_name)
+    #     print('\t' + profile.user.email)
+    #     print('\t' + profile.portfolio)
+    #     print('\t' + profile.profile_pic.__str__())
 
     return render(request, 'user_app/user_list.html', context={'profiles' : profiles, 'row_count': 0})
 

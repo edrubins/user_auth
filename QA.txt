@@ -1,0 +1,4 @@
+After coding the registration, user_login and user_logout views, I added a user_list view to lists the users and the profile information. I added the @login_required decorator to the user_logout and user_list views.  The first couple of times I tried to access the user_list page I was redirected to the login page and, after logging in I  was redirected to the user_list page.
+
+At some I must have changed something because the redirect after logging stopped working. Now, when I try to access the user_list page I'm redirected to the login page with a URL of http://localhost:8000/user_app/user_login/?next=/user_app/user_list/ . The query string contains the correct redirect, but I end on the home page. Using PyCharm, I set a debug breakpoint. and the neither the request POST or GET object has a 'next' attribute.
+
