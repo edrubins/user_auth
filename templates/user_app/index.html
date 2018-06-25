@@ -2,5 +2,14 @@
 {% extends "user_app/base.html" %}
 
 {% block body_block %}
-    <div class="jumbotron">Hello Users</div>
+    <div class="jumbotron">
+        <h2>Welcome Home - metaphorically speaking.</h2>
+        ,
+        <row>
+            <p>Already a user - <a href="{% url 'user_app:user_login' %}">login</a> and check out the other users.</p>
+        </row>
+        <row>
+            <p>Not yet a user - <a href="{% url 'user_app:register' %}">register now.</a></p>
+        </row>
+    </div>
 {% endblock %}
