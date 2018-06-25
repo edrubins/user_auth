@@ -1,6 +1,9 @@
 import sys
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, HttpResponse
 from user_app.models import UserProfileInfo
 from user_app.forms import UserForm, UserProfileInfoForm
 
@@ -8,6 +11,10 @@ from user_app.forms import UserForm, UserProfileInfoForm
 def index(request):
     return render(request, 'user_app/index.html')
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
 
 def register(request):
 
@@ -52,6 +59,26 @@ def register(request):
                 'registered' : registered}
         return render(request, 'user_app/registration.html', context=cntx)
 
+def user_login(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                return HttpResponse("Account is not active.")
+        else:
+            print("Login Falied!")
+            print("Username: {} Password {}".format(username, password))
+            return HttpResponse("Invalid login atttempted.")
+
+    return render(request, 'user_app/login.html')
+
+@login_required
 def user_list(request):
     profiles = UserProfileInfo.objects.all()
     for profile in profiles:
@@ -63,3 +90,25 @@ def user_list(request):
         print('\t' + profile.profile_pic.__str__())
 
     return render(request, 'user_app/user_list.html', context={'profiles' : profiles, 'row_count': 0})
+
+def handler404(request):
+    # response = render_to_response('404.html', {}, context_instance = RequestContext(request))
+    # response.status_code = 404
+
+    get = request.GET
+    for item in get.keys():
+        print("{}: {}".format(item, get[item]))
+
+    return render(request, 'user_app/404.html', context=request)
+
+def handler500(request):
+    # response = render_to_response('500.html', {}, context_instance = RequestContext(request))
+    # response.status_code = 500
+
+    get = request.GET
+    print("response.GET:")
+    for item in get.keys():
+        print("{}: {}".format(item, get[item]))
+
+    return render(request, 'user_app/500.html', context={})
+
