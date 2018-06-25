@@ -4,7 +4,6 @@
 {% block body_block %}
     <div class="jumbotron">
         <h2>Welcome Home - metaphorically speaking.</h2>
-        ,
         <row>
             {% if user.is_authenticated %}
                 <p>Welcome back. <a href="{% url 'user_app:user_list' %}">check out the other users</a>.</p>
