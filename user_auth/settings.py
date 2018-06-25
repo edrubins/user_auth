@@ -27,7 +27,7 @@ SECRET_KEY = 'w&c!@nt)a+@hzm2vu$@h5eu#pe9odq^7_gfv&zqxx4q02swewt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
 
 
 # Application definition
@@ -138,3 +138,4 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+LOGIN_URL = '/user_app/user_login'

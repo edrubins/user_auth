@@ -14,14 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.conf.urls.static import static
 from django.contrib import admin
-from django.conf import settings
 from user_app import views
+from django.conf import settings
+from django.conf.urls.static import static
+
+handler404 = "user_app.views.handler404"
+handler500 = "user_app.views.handler500"
 
 urlpatterns = [
     url(r'^$', views.index, name="index"),
     url(r'^admin/', admin.site.urls),
-    url(r'user_app/', include('user_app.urls')),
+    url(r'^user_app/', include('user_app.urls')),
+    url(r'^logout/', views.user_logout, name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

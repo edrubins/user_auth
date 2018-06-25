@@ -2,5 +2,17 @@
 {% extends "user_app/base.html" %}
 
 {% block body_block %}
-    <div class="jumbotron">Hello Users</div>
+    <div class="jumbotron">
+        <h2>Welcome Home - metaphorically speaking.</h2>
+        ,
+        <row>
+            {% if user.is_authenticated %}
+                <p>Welcome back. <a href="{% url 'user_app:user_list' %}">check out the other users</a>.</p>
+            {% else %}
+                <p>Not yet a user - <a href="{% url 'user_app:register' %}">register now.</a></p>
+            {% endif %}
+        </row>
+        <row>
+        </row>
+    </div>
 {% endblock %}
