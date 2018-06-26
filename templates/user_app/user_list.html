@@ -22,7 +22,7 @@
 
                     {% for profile in profiles %}
                         <div class="row">
-                            <tr class="{{ forloop.counter|row_class }}">
+                            <tr class="{{ forloop.counter|odd_even:row_classes }}">
                                 <td class="col-md-2">{{ profile.user.username }}</td>
                                 <td class="col-md-2">{{ profile.user.first_name }}</td>
                                 <td class="col-md-2">{{ profile.user.last_name }}</td>

@@ -2,12 +2,14 @@ from django import template
 
 register = template.Library()
 
-@register.filter(name='row_class')
-def row_class(value):
-    new_class = ""
-    if value % 2:
-        new_class = "even_row"
+@register.filter(name='odd_even')
+def odd_even(value, choices):
+    if choices is None:
+        choice = ""
     else:
-        new_class = "odd_row"
+        if value % 2:
+            choice = choices['odd']
+        else:
+            choice = choices['even']
 
-    return new_class
+    return choice

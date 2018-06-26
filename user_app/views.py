@@ -71,8 +71,6 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                # redirect = request.REQUEST.get(REDIRECT_FIELD_NAME)
-
                 return HttpResponseRedirect(next)
             else:
                 return HttpResponse("Account is not active.")
@@ -86,15 +84,8 @@ def user_login(request):
 @login_required
 def user_list(request):
     profiles = UserProfileInfo.objects.all()
-    # for profile in profiles:
-    #     print(profile.user.username)
-    #     print('\t' + profile.user.first_name)
-    #     print('\t' + profile.user.last_name)
-    #     print('\t' + profile.user.email)
-    #     print('\t' + profile.portfolio)
-    #     print('\t' + profile.profile_pic.__str__())
 
-    return render(request, 'user_app/user_list.html', context={'profiles' : profiles, 'row_count': 0})
+    return render(request, 'user_app/user_list.html', context={'profiles' : profiles, 'row_classes' : {'odd': 'odd_row', 'even' : 'even_row'}} )
 
 def handler404(request):
     # response = render_to_response('404.html', {}, context_instance = RequestContext(request))
