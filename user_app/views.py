@@ -1,7 +1,7 @@
 import sys
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from user_app.models import UserProfileInfo
@@ -64,12 +64,16 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         next = request.POST.get('next')
+        if not next:
+            next = reverse('index')
 
         user = authenticate(username=username, password=password)
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                # redirect = request.REQUEST.get(REDIRECT_FIELD_NAME)
+
+                return HttpResponseRedirect(next)
             else:
                 return HttpResponse("Account is not active.")
         else:
